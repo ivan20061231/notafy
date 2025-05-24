@@ -1,6 +1,7 @@
 <?php
 use App\Http;
 use App\Http\Controllers\EstudianteController;
+use App\Http\Controllers\ProfesorMateriaController;
 use App\Http\Controllers\ProfesorController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MateriaController;
@@ -41,12 +42,27 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 
 Route::middleware(['auth', 'role:profesor'])->prefix('profesor')->name('profesor.')->group(function () {
     Route::get('/dashboard', [ProfesorController::class, 'dashboard'])->name('dashboard');
+     Route::get('/materias', [ProfesorMateriaController::class, 'index'])->name('materias.index');
+    Route::get('/materias/create', [ProfesorMateriaController::class, 'create'])->name('materias.create');
+    Route::post('/materias', [ProfesorMateriaController::class, 'store'])->name('materias.store');
+    Route::get('/materias/{materia}/estudiantes', [ProfesorMateriaController::class, 'estudiantes'])->name('materias.estudiantes');
+    Route::post('/materias/{materia}/estudiantes/{estudiante}/notas', [ProfesorMateriaController::class, 'guardarNotas'])->name('materias.notas.guardar');
+    Route::get('/materias/{materia}/notas', [ProfesorMateriaController::class, 'notas'])
+    ->name('materias.notas');
+
+Route::put('/materias/{materia}/notas', [ProfesorMateriaController::class, 'actualizarNotas'])
+    ->name('materias.notas.actualizar');
 });
 
 Route::middleware(['auth', 'role:estudiante'])->prefix('estudiante')->name('estudiante.')->group(function () {
     Route::get('/dashboard', [EstudianteController::class, 'dashboard'])->name('dashboard');
     Route::get('/materias', [MateriaController::class, 'index'])->name('materias.index');
     Route::post('/materias/{materia}/matricular', [EstudianteController::class, 'matricular'])->name('materias.matricular');
+    Route::get('/matricular', [EstudianteController::class, 'verMateriasDisponibles'])->name('matricular');
+    Route::post('/matricular/{id}', [EstudianteController::class, 'matricular'])->name('matricular.store');
+
+    Route::delete('/matricular/{id}/cancelar', [EstudianteController::class, 'cancelarMatricula'])->name('matricular.cancelar');
+
 });
 
 

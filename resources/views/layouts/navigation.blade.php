@@ -23,8 +23,11 @@
                         <x-nav-link :href="route('admin.materias.index')" :active="request()->routeIs('admin.materias.*')">
                             {{ __('Materias') }}
                          </x-nav-link>
-                        
-                    @endif
+                     @elseif (Auth::user()->role === 'profesor')
+                <x-nav-link :href="route('profesor.materias.index')" :active="request()->routeIs('profesor.materias.*')">
+                    {{ __('Mis Materias') }}
+                </x-nav-link>    
+                 @endif
                 </div>
 
             </div>

@@ -48,7 +48,9 @@ class User extends Authenticatable
         ];
     }
     public function materias(){
-    return $this->belongsToMany(Materia::class, 'estudiante_materia', 'estudiante_id', 'materia_id');
+    return $this->belongsToMany(Materia::class, 'estudiante_materia', 'user_id', 'materia_id')
+    ->withPivot('nota_corte1', 'nota_corte2', 'nota_definitiva')
+                ->withTimestamps();
     }
 
     public function materiasDictadas(){
