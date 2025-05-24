@@ -1,89 +1,90 @@
-<h1>NotasApp 🎓</h1>
+# Notafy 📚
 
-<p><strong>NotasApp</strong> es una plataforma construida con Laravel para gestionar el registro de notas académicas. Incluye diferentes roles (Administrador, Profesor, Estudiante) con accesos y funcionalidades personalizadas para cada uno.</p>
+**Notafy** es una plataforma construida con Laravel para gestionar el registro de materias y notas académicas. Incluye roles con accesos diferenciados para Administradores, Profesores y Estudiantes.
 
-<h2>🚀 Características</h2>
-<ul>
-  <li><strong>Administrador</strong>
-    <ul>
-      <li>Crear, editar y eliminar materias.</li>
-      <li>Asignar profesores.</li>
-      <li>Gestionar usuarios.</li>
-    </ul>
-  </li>
-  <li><strong>Profesor</strong>
-    <ul>
-      <li>Registrar materias.</li>
-      <li>Asignar y editar notas del primer y segundo corte.</li>
-      <li>Ver nota definitiva calculada automáticamente.</li>
-    </ul>
-  </li>
-  <li><strong>Estudiante</strong>
-    <ul>
-      <li>Matricular materias disponibles.</li>
-      <li>Ver sus materias inscritas y sus respectivas notas.</li>
-      <li>Cancelar materias.</li>
-    </ul>
-  </li>
-</ul>
+## 🚀 Características
 
-<h2>🛠 Tecnologías</h2>
-<ul>
-  <li>PHP 8+</li>
-  <li>Laravel 10+</li>
-  <li>Tailwind CSS</li>
-  <li>Laravel Breeze (autenticación)</li>
-  <li>MySQL / MariaDB</li>
-  <li>XAMPP / Laravel Sail / Valet</li>
-</ul>
+- **Administrador**
+  - Gestiona usuarios (profesores y estudiantes).
+  - Crea, edita y elimina materias.
+  - Asigna profesores a materias.
+- **Profesor**
+  - Registra materias bajo su cargo.
+  - Asigna y edita notas del primer y segundo corte.
+  - Visualiza la nota definitiva (calculada automáticamente).
+- **Estudiante**
+  - Se matricula en materias con cupo disponible.
+  - Visualiza sus materias inscritas y notas.
+  - Cancela materias si lo desea.
 
-<h2>⚙️ Instalación</h2>
-<ol>
-  <li>Clona el repositorio:
-    <pre><code>git clone https://github.com/TU_USUARIO/notasapp.git
-cd notasapp</code></pre>
-  </li>
-  <li>Instala dependencias:
-    <pre><code>composer install
-npm install &amp;&amp; npm run dev</code></pre>
-  </li>
-  <li>Copia el archivo de entorno y configura tu base de datos:
-    <pre><code>cp .env.example .env
-php artisan key:generate</code></pre>
-    <p>Edita <code>.env</code> y configura:</p>
-    <pre><code>DB_DATABASE=notasapp
-DB_USERNAME=root
-DB_PASSWORD=</code></pre>
-  </li>
-  <li>Ejecuta las migraciones y seeders:
-    <pre><code>php artisan migrate --seed</code></pre>
-  </li>
-  <li>Inicia el servidor local:
-    <pre><code>php artisan serve</code></pre>
-  </li>
-  <li>Abre en el navegador: <a href="http://localhost:8000">http://localhost:8000</a></li>
-</ol>
+## 🛠 Tecnologías
 
-<h2>🔑 Credenciales por defecto</h2>
-<pre><code>Admin:
-  email: admin@notasapp.com
+- PHP 8+
+- Laravel 11+
+- Tailwind CSS
+- Laravel Breeze (autenticación)
+- MySQL / MariaDB
+- XAMPP / Laravel Sail / Valet
+
+## ⚙️ Instalación
+
+1. Clona el repositorio:
+    ```bash
+    git clone https://github.com/ivan20061231/notafy.git
+    cd notafy
+    ```
+
+2. Instala las dependencias:
+    ```bash
+    composer install
+    npm install && npm run dev
+    ```
+
+3. Copia el archivo de entorno y configura tu base de datos:
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
+    Edita el archivo `.env`:
+    ```env
+    DB_DATABASE=notafy
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ```
+
+4. Ejecuta las migraciones y seeders:
+    ```bash
+    php artisan migrate --seed
+    ```
+
+5. Inicia el servidor local:
+    ```bash
+    php artisan serve
+    ```
+
+6. Abre en el navegador: [http://localhost:8000](http://localhost:8000)
+
+## 🔑 Credenciales por defecto
+
+```txt
+Admin:
+  email: admin@notafy.com
   password: password
 
 Profesor:
-  email: profesor@notasapp.com
+  email: profesor@notafy.com
   password: password
 
 Estudiante:
-  email: estudiante@notasapp.com
+  email: estudiante@notafy.com
   password: password
-</code></pre>
-<p><em>Puedes modificar o crear más usuarios desde la base de datos o el panel de administrador.</em></p>
+Puedes modificar o crear más usuarios desde la base de datos o el panel de administrador.
 
-<h2>🧩 Estructura de roles</h2>
-<pre><code>User (rol)
+🧩 Estructura de roles
+pgsql
+Copiar
+Editar
+User (rol)
 ├── Admin     → Control total
 ├── Profesor  → Registra materias y notas
 └── Estudiante→ Matricula materias y ve notas
-</code></pre>
-
-

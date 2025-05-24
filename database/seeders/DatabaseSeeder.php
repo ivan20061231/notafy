@@ -19,5 +19,25 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+        User::create([
+        'name' => 'Admin',
+        'email' => 'admin@notafy.com',
+        'password' => bcrypt('password'),
+        'role' => 'admin'
+        ]);
+        User::create([
+        'name' => 'Estudiante',
+        'email' => 'estudiante@notafy.com',
+        'password' => bcrypt('password'),
+        'role' => 'estudiante'
+        ]);
+        User::create([
+        'name' => 'Profesor',
+        'email' => 'profesor@notafy.com',
+        'password' => bcrypt('password'),
+        'role' => 'profesor'
+        ]);
+
+
     }
 }
