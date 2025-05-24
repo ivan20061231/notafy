@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('materias', function (Blueprint $table) {
-            //
-            $table->unsignedBigInteger('profesor_id')->nullable()->after('descripcion');
-            $table->foreign('profesor_id')->references('id')->on('users')->onDelete('set null');
-        });
+        // Evita error si ya existe la columna
+        if (!Schema::hasColumn('materias', 'profesor_id')) {
+            Schema::table('materias', function (Blueprint $table) {
+                $table->unsignedBigInteger('profesor_id')->nullable()->after('descripcion');
+                $table->foreign('profesor_id')->references('id')->on('users')->onDelete('set null');
+            });
+        }
     }
 
     /**
@@ -23,8 +25,12 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('materias', function (Blueprint $table) {
-            //
-        });
+        // Elimina la columna si existe
+        if (Schema::hasColumn('materias', 'profesor_id')) {
+            Schema::table('materias', function (Blueprint $table) {
+                $table->dropForeign(['profesor_id']);
+                $table->dropColumn('profesor_id');
+            });
+        }
     }
 };
